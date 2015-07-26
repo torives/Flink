@@ -8,12 +8,13 @@
 
 /* Begin PBXBuildFile section */
 		75424F911B654FE000D34C6C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75424F901B654FE000D34C6C /* AppDelegate.swift */; };
-		75424F931B654FE000D34C6C /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75424F921B654FE000D34C6C /* ViewController.swift */; };
+		75424F931B654FE000D34C6C /* RegistrationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75424F921B654FE000D34C6C /* RegistrationController.swift */; };
 		75424F961B654FE000D34C6C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 75424F941B654FE000D34C6C /* Main.storyboard */; };
 		75424F981B654FE000D34C6C /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 75424F971B654FE000D34C6C /* Images.xcassets */; };
 		75424F9B1B654FE000D34C6C /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 75424F991B654FE000D34C6C /* LaunchScreen.xib */; };
 		75424FA71B654FE000D34C6C /* FlinkTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75424FA61B654FE000D34C6C /* FlinkTests.swift */; };
 		7586849B1B65508B0059C418 /* Facade.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7586849A1B65508B0059C418 /* Facade.swift */; };
+		7586849D1B6553990059C418 /* TrainerUserController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7586849C1B6553990059C418 /* TrainerUserController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -30,7 +31,7 @@
 		75424F8B1B654FDF00D34C6C /* Flink.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Flink.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		75424F8F1B654FE000D34C6C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		75424F901B654FE000D34C6C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		75424F921B654FE000D34C6C /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		75424F921B654FE000D34C6C /* RegistrationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationController.swift; sourceTree = "<group>"; };
 		75424F951B654FE000D34C6C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		75424F971B654FE000D34C6C /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		75424F9A1B654FE000D34C6C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
@@ -38,6 +39,7 @@
 		75424FA51B654FE000D34C6C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		75424FA61B654FE000D34C6C /* FlinkTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlinkTests.swift; sourceTree = "<group>"; };
 		7586849A1B65508B0059C418 /* Facade.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Facade.swift; sourceTree = "<group>"; };
+		7586849C1B6553990059C418 /* TrainerUserController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrainerUserController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -126,7 +128,8 @@
 		758684981B6550710059C418 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				75424F921B654FE000D34C6C /* ViewController.swift */,
+				75424F921B654FE000D34C6C /* RegistrationController.swift */,
+				7586849C1B6553990059C418 /* TrainerUserController.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -240,7 +243,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				7586849B1B65508B0059C418 /* Facade.swift in Sources */,
-				75424F931B654FE000D34C6C /* ViewController.swift in Sources */,
+				75424F931B654FE000D34C6C /* RegistrationController.swift in Sources */,
+				7586849D1B6553990059C418 /* TrainerUserController.swift in Sources */,
 				75424F911B654FE000D34C6C /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

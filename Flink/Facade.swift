@@ -11,5 +11,26 @@ import Foundation
 // Singleton
 class Facade
 {
+    var isTrainer: Bool!
+   
     
+    /* **************************************************************************************************
+    **
+    **  MARK: Singleton Pattern
+    **
+    ****************************************************************************************************/
+
+    static var instance: Facade {
+        if (singletonInstance == nil) {
+            singletonInstance = Facade()
+        }
+        return singletonInstance
+    }
+    
+    private static var singletonInstance: Facade!
+    
+    private init ()
+    {
+        
+    }
 }
