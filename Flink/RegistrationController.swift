@@ -11,36 +11,36 @@ import UIKit
 class RegistrationController: UIViewController
 {
     @IBOutlet weak var titleLabel: UILabel!
-    
-    
+
+
     @IBOutlet weak var firstNameTextField: UITextField!
-    
+
     @IBOutlet weak var lastNameTextField: UITextField!
-    
+
     @IBOutlet weak var emailTextField: UITextField!
-    
+
     @IBOutlet weak var genderTextField: UITextField!
 
-    
+
     override func viewWillAppear (animated: Bool)
     {
         let text = (Facade.instance.isTrainer == true) ? "Trainer" : "User"
         titleLabel.text = "\(text) registration"
     }
-    
+
 
     @IBAction func registerButtonAction (sender: UIButton)
     {
         let name = "\(firstNameTextField.text) \(lastNameTextField.text)"
         let email = emailTextField.text
         let sex = genderTextField.text
-        let birthDate = NSDate()
+        let birthDate = NSDate() // TODO: Gabriel
         let isTrainer = Facade.instance.isTrainer!
 
         let user = User(name: name, email: email, sex: sex, birthDate: birthDate, isTrainer: isTrainer)
         Facade.instance.saveUser(user)
         
-        // Segue to somewhere
+        // TODO: Dependendo de isTrainer, redireciona para uma página ou outra
     }
 }
 

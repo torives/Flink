@@ -18,11 +18,11 @@ class Facade
     ****************************************************************************************************/
     
     // Usado somente quando construindo o usuário
-    // Para quando o usuário já esta cadastrado, usar appUser
+    // Para quando o usuário já está cadastrado, usar appUser
     var isTrainer: Bool?
    
-    // Usuário do aplicativo
-    private(set) var appUser: User
+    /// Usuário do aplicativo
+    private(set) var appUser: User!
     
     
     /* **************************************************************************************************
@@ -34,7 +34,7 @@ class Facade
     func saveUser (user: User)
     {
         appUser = user
-        // TODO: Salvar na plist
+        UserDAO.save(user)
     }
     
     
@@ -55,7 +55,8 @@ class Facade
     
     private init ()
     {
-        // TODO: Ler appUser da pList
-        appUser = User(name: "", email: "", sex: "", birthDate: NSDate(), isTrainer: false)
+        appUser = UserDAO.read()
     }
 }
+
+
