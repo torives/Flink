@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6EEED33EB4B2C0581789CC87 /* Pods_Flink.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C2ED6AB2EFC9C9C4E2FB3C93 /* Pods_Flink.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		75424F911B654FE000D34C6C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75424F901B654FE000D34C6C /* AppDelegate.swift */; };
 		75424F931B654FE000D34C6C /* RegistrationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75424F921B654FE000D34C6C /* RegistrationController.swift */; };
 		75424F961B654FE000D34C6C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 75424F941B654FE000D34C6C /* Main.storyboard */; };
@@ -40,6 +41,9 @@
 		75424FA61B654FE000D34C6C /* FlinkTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlinkTests.swift; sourceTree = "<group>"; };
 		7586849A1B65508B0059C418 /* Facade.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Facade.swift; sourceTree = "<group>"; };
 		7586849C1B6553990059C418 /* TrainerUserController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrainerUserController.swift; sourceTree = "<group>"; };
+		AB2B368507838C8F2B0AFDDD /* Pods-Flink.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Flink.release.xcconfig"; path = "Pods/Target Support Files/Pods-Flink/Pods-Flink.release.xcconfig"; sourceTree = "<group>"; };
+		BF28E6F02E611931B9DC1FCF /* Pods-Flink.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Flink.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Flink/Pods-Flink.debug.xcconfig"; sourceTree = "<group>"; };
+		C2ED6AB2EFC9C9C4E2FB3C93 /* Pods_Flink.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Flink.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -47,6 +51,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6EEED33EB4B2C0581789CC87 /* Pods_Flink.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -60,12 +65,31 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0BA11E84771EEF2AF6364F11 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				C2ED6AB2EFC9C9C4E2FB3C93 /* Pods_Flink.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		4D74C4F666E837DFEEA895F6 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				BF28E6F02E611931B9DC1FCF /* Pods-Flink.debug.xcconfig */,
+				AB2B368507838C8F2B0AFDDD /* Pods-Flink.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 		75424F821B654FDF00D34C6C = {
 			isa = PBXGroup;
 			children = (
 				75424F8D1B654FE000D34C6C /* Flink */,
 				75424FA31B654FE000D34C6C /* FlinkTests */,
 				75424F8C1B654FE000D34C6C /* Products */,
+				4D74C4F666E837DFEEA895F6 /* Pods */,
+				0BA11E84771EEF2AF6364F11 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -149,9 +173,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 75424FAA1B654FE000D34C6C /* Build configuration list for PBXNativeTarget "Flink" */;
 			buildPhases = (
+				C1FABDC68ACF6A162C400A2F /* Check Pods Manifest.lock */,
 				75424F871B654FDF00D34C6C /* Sources */,
 				75424F881B654FDF00D34C6C /* Frameworks */,
 				75424F891B654FDF00D34C6C /* Resources */,
+				F4259EA2D07AD0B6A76E2543 /* Embed Pods Frameworks */,
+				EB5C3E71BEDC7A6F09DDEB8D /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -236,6 +263,54 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		C1FABDC68ACF6A162C400A2F /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		EB5C3E71BEDC7A6F09DDEB8D /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Flink/Pods-Flink-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		F4259EA2D07AD0B6A76E2543 /* Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Flink/Pods-Flink-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		75424F871B654FDF00D34C6C /* Sources */ = {
@@ -370,6 +445,7 @@
 		};
 		75424FAB1B654FE000D34C6C /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = BF28E6F02E611931B9DC1FCF /* Pods-Flink.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = Flink/Info.plist;
@@ -380,6 +456,7 @@
 		};
 		75424FAC1B654FE000D34C6C /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = AB2B368507838C8F2B0AFDDD /* Pods-Flink.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = Flink/Info.plist;
