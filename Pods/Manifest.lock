@@ -1,0 +1,22 @@
+PODS:
+  - MaterialKit (0.3.5)
+  - PNChartSwift (0.0.2)
+
+DEPENDENCIES:
+  - MaterialKit
+  - PNChartSwift (from `https://github.com/kevinzhow/PNChart-Swift.git`)
+
+EXTERNAL SOURCES:
+  PNChartSwift:
+    :git: https://github.com/kevinzhow/PNChart-Swift.git
+
+CHECKOUT OPTIONS:
+  PNChartSwift:
+    :commit: acfa4a32b3fbd5dad071c77869c4315f3687ee8d
+    :git: https://github.com/kevinzhow/PNChart-Swift.git
+
+SPEC CHECKSUMS:
+  MaterialKit: 6f1e9382f89593df768bc0c31ded9952a6d8ad46
+  PNChartSwift: ae392bbb49ed72492212c4c7a498e6c4762aa331
+
+COCOAPODS: 0.38.1
