@@ -11,8 +11,32 @@ import Foundation
 // Singleton
 class Facade
 {
-    var isTrainer: Bool!
+    /* **************************************************************************************************
+    **
+    **  MARK: Instance variables
+    **
+    ****************************************************************************************************/
+    
+    // Usado somente quando construindo o usuário
+    // Para quando o usuário já esta cadastrado, usar appUser
+    var isTrainer: Bool?
    
+    // Usuário do aplicativo
+    private(set) var appUser: User
+    
+    
+    /* **************************************************************************************************
+    **
+    **  MARK: Instance methods
+    **
+    ****************************************************************************************************/
+
+    func saveUser (user: User)
+    {
+        appUser = user
+        // TODO: Salvar na plist
+    }
+    
     
     /* **************************************************************************************************
     **
@@ -31,6 +55,7 @@ class Facade
     
     private init ()
     {
-        
+        // TODO: Ler appUser da pList
+        appUser = User(name: "", email: "", sex: "", birthDate: NSDate(), isTrainer: false)
     }
 }

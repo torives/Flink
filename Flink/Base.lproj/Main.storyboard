@@ -86,7 +86,7 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Password" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="c8e-Wd-cl2">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Gender" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="c8e-Wd-cl2">
                                 <rect key="frame" x="16" y="362" width="132" height="40"/>
                                 <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
@@ -104,7 +104,7 @@
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="UUh-jq-RCn">
-                                <rect key="frame" x="290" y="108.5" width="20" height="122.5"/>
+                                <rect key="frame" x="290" y="108" width="20" height="122.5"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="20" id="xzX-Cn-YAo"/>
                                 </constraints>
@@ -138,12 +138,24 @@
                                         <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Zow-Ho-KPT">
+                                        <rect key="frame" x="8" y="5" width="35" height="30"/>
+                                        <state key="normal" title="Back">
+                                            <color key="titleColor" red="0.99215692281723022" green="0.9960784912109375" blue="0.9960784912109375" alpha="1" colorSpace="deviceRGB"/>
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <segue destination="1nh-yn-80Y" kind="show" id="57R-st-s9c"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="6T2-dP-Mxw"/>
+                                    <constraint firstAttribute="centerY" secondItem="Zow-Ho-KPT" secondAttribute="centerY" id="FJr-8s-3vs"/>
                                     <constraint firstAttribute="centerX" secondItem="scE-ga-DVA" secondAttribute="centerX" id="Lqi-D1-HF7"/>
                                     <constraint firstAttribute="centerY" secondItem="scE-ga-DVA" secondAttribute="centerY" id="PXt-vd-ifZ"/>
+                                    <constraint firstItem="Zow-Ho-KPT" firstAttribute="leading" secondItem="EVe-8N-J6D" secondAttribute="leading" constant="8" id="b9b-lL-DVU"/>
                                 </constraints>
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Registration" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MAq-gs-qWf">
@@ -194,8 +206,8 @@
                     <connections>
                         <outlet property="emailTextField" destination="Hul-RL-OY7" id="m9b-Qw-ztb"/>
                         <outlet property="firstNameTextField" destination="6os-YA-tQh" id="GvL-gl-qmn"/>
+                        <outlet property="genderTextField" destination="ct7-el-zJu" id="2Z3-1o-VVW"/>
                         <outlet property="lastNameTextField" destination="HY7-Ic-5NK" id="rDC-nP-glt"/>
-                        <outlet property="passwordTextField" destination="ct7-el-zJu" id="aun-j6-SbE"/>
                         <outlet property="titleLabel" destination="MAq-gs-qWf" id="T0U-kD-Bj6"/>
                     </connections>
                 </viewController>

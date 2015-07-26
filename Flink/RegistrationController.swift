@@ -19,10 +19,10 @@ class RegistrationController: UIViewController
     
     @IBOutlet weak var emailTextField: UITextField!
     
-    @IBOutlet weak var passwordTextField: UITextField!
+    @IBOutlet weak var genderTextField: UITextField!
 
     
-    override func viewWillAppear(animated: Bool)
+    override func viewWillAppear (animated: Bool)
     {
         let text = (Facade.instance.isTrainer == true) ? "Trainer" : "User"
         titleLabel.text = "\(text) registration"
@@ -31,7 +31,16 @@ class RegistrationController: UIViewController
 
     @IBAction func registerButtonAction (sender: UIButton)
     {
-        // TODO: Save appUser using Facade
+        let name = "\(firstNameTextField.text) \(lastNameTextField.text)"
+        let email = emailTextField.text
+        let sex = genderTextField.text
+        let birthDate = NSDate()
+        let isTrainer = Facade.instance.isTrainer!
+
+        let user = User(name: name, email: email, sex: sex, birthDate: birthDate, isTrainer: isTrainer)
+        Facade.instance.saveUser(user)
+        
+        // Segue to somewhere
     }
 }
 
