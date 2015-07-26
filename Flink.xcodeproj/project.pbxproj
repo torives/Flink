@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		1618DA321B65757400D794FD /* HealthData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1618DA311B65757400D794FD /* HealthData.swift */; };
 		4FCE83E91B65771900F4C70C /* MPCManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FCE83E81B65771900F4C70C /* MPCManager.swift */; };
 		4FCE83EB1B65772700F4C70C /* MPCManagerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FCE83EA1B65772700F4C70C /* MPCManagerDelegate.swift */; };
 		6EEED33EB4B2C0581789CC87 /* Pods_Flink.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C2ED6AB2EFC9C9C4E2FB3C93 /* Pods_Flink.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
@@ -34,7 +33,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		1618DA311B65757400D794FD /* HealthData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HealthData.swift; sourceTree = "<group>"; };
+		4FCE83E81B65771900F4C70C /* MPCManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MPCManager.swift; sourceTree = "<group>"; };
+		4FCE83EA1B65772700F4C70C /* MPCManagerDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MPCManagerDelegate.swift; sourceTree = "<group>"; };
 		7517D7931B656F0E0053C72B /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		7517D7971B6573480053C72B /* UserDAO.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserDAO.swift; sourceTree = "<group>"; };
 		75424F8B1B654FDF00D34C6C /* Flink.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Flink.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -94,7 +94,6 @@
 			isa = PBXGroup;
 			children = (
 				7517D7931B656F0E0053C72B /* User.swift */,
-				1618DA311B65757400D794FD /* HealthData.swift */,
 			);
 			name = Domain;
 			sourceTree = "<group>";
@@ -348,7 +347,6 @@
 			files = (
 				7586849B1B65508B0059C418 /* Facade.swift in Sources */,
 				4FCE83EB1B65772700F4C70C /* MPCManagerDelegate.swift in Sources */,
-				1618DA321B65757400D794FD /* HealthData.swift in Sources */,
 				7517D7981B6573480053C72B /* UserDAO.swift in Sources */,
 				75424F931B654FE000D34C6C /* RegistrationController.swift in Sources */,
 				7586849D1B6553990059C418 /* TrainerUserController.swift in Sources */,
