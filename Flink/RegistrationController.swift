@@ -8,7 +8,7 @@
 
 import UIKit
 
-class RegistrationController: UIViewController
+class RegistrationController: UIViewController, UITextFieldDelegate
 {
     @IBOutlet weak var titleLabel: UILabel!
 
@@ -46,5 +46,19 @@ class RegistrationController: UIViewController
             performSegueWithIdentifier("toShare", sender: nil)
         }
     }
+
+
+    /* **************************************************************************************************
+    **
+    **  MARK: UITextField Delegate
+    **
+    ****************************************************************************************************/
+
+    func textFieldShouldReturn(textField: UITextField) -> Bool
+    {
+        textField.resignFirstResponder()
+        return true
+    }
 }
+
 
