@@ -1,14 +1,14 @@
 //
-//  StudentsController.swift
+//  ShareController.swift
 //  Flink
 //
-//  Created by Renan Almeida on 7/26/15.
+//  Created by Renan Almeida on 7/27/15.
 //  Copyright (c) 2015 Flink. All rights reserved.
 //
 
 import UIKit
 
-class StudentsController: UITableViewController
+class ShareController: UITableViewController
 {
     /* **************************************************************************************************
     **
@@ -20,7 +20,7 @@ class StudentsController: UITableViewController
     {
         return 1
     }
-    
+
     override func tableView (tableView: UITableView, numberOfRowsInSection section: Int) -> Int
     {
         return 0
