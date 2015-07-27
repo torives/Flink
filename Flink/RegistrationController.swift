@@ -40,7 +40,11 @@ class RegistrationController: UIViewController
         let user = User(name: name, email: email, sex: sex, birthDate: birthDate, isTrainer: isTrainer)
         Facade.instance.saveUser(user)
         
-        // TODO: Dependendo de isTrainer, redireciona para uma página ou outra
+        if (isTrainer) {
+            performSegueWithIdentifier("toStudents", sender: nil)
+        } else {
+            performSegueWithIdentifier("toShare", sender: nil)
+        }
     }
 }
 
