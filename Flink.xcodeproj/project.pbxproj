@@ -11,6 +11,7 @@
 		4FCE83EB1B65772700F4C70C /* MPCManagerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FCE83EA1B65772700F4C70C /* MPCManagerDelegate.swift */; };
 		4FCE83ED1B657DAF00F4C70C /* HealthData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FCE83EC1B657DAF00F4C70C /* HealthData.swift */; };
 		4FCE83F11B65A7F400F4C70C /* JSONService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FCE83F01B65A7F400F4C70C /* JSONService.swift */; };
+		4FCE83F31B6813ED00F4C70C /* HealthDAO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FCE83F21B6813ED00F4C70C /* HealthDAO.swift */; };
 		6EEED33EB4B2C0581789CC87 /* Pods_Flink.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C2ED6AB2EFC9C9C4E2FB3C93 /* Pods_Flink.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		7517D7941B656F0E0053C72B /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7517D7931B656F0E0053C72B /* User.swift */; };
 		7517D7981B6573480053C72B /* UserDAO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7517D7971B6573480053C72B /* UserDAO.swift */; };
@@ -41,6 +42,7 @@
 		4FCE83EA1B65772700F4C70C /* MPCManagerDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MPCManagerDelegate.swift; sourceTree = "<group>"; };
 		4FCE83EC1B657DAF00F4C70C /* HealthData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HealthData.swift; sourceTree = "<group>"; };
 		4FCE83F01B65A7F400F4C70C /* JSONService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JSONService.swift; sourceTree = "<group>"; };
+		4FCE83F21B6813ED00F4C70C /* HealthDAO.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HealthDAO.swift; sourceTree = "<group>"; };
 		7517D7931B656F0E0053C72B /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		7517D7971B6573480053C72B /* UserDAO.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserDAO.swift; sourceTree = "<group>"; };
 		75424F8B1B654FDF00D34C6C /* Flink.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Flink.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -110,6 +112,7 @@
 		7517D7961B65733C0053C72B /* DAO */ = {
 			isa = PBXGroup;
 			children = (
+				4FCE83F21B6813ED00F4C70C /* HealthDAO.swift */,
 				7517D7971B6573480053C72B /* UserDAO.swift */,
 			);
 			name = DAO;
@@ -357,6 +360,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4FCE83F31B6813ED00F4C70C /* HealthDAO.swift in Sources */,
 				7586849B1B65508B0059C418 /* Facade.swift in Sources */,
 				4FCE83F11B65A7F400F4C70C /* JSONService.swift in Sources */,
 				4FCE83EB1B65772700F4C70C /* MPCManagerDelegate.swift in Sources */,
