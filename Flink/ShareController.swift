@@ -8,51 +8,108 @@
 
 import UIKit
 
-class ShareController: UITableViewController
+class ShareController: UIViewController, UITableViewDataSource, UITableViewDelegate
 {
+    /* **************************************************************************************************
+    **
+    **  MARK: Interface
+    **
+    ****************************************************************************************************/
+    
+    @IBOutlet weak var connectionStatus: UIImageView!
+    
+    @IBOutlet weak var tableView: UITableView!
+    
+    var overlayView: UIView!
+    
+    
+    /* **************************************************************************************************
+    **
+    **  MARK: UIViewController
+    **
+    ****************************************************************************************************/
+
+    
+    override func viewDidLoad ()
+    {
+        var animationFrames = [UIImage]()
+        for (var i = 1 ; i < 5 ; i++) {
+            animationFrames.append(UIImage(named: "connection\(i)")!)
+        }
+        connectionStatus.animationImages = animationFrames
+        connectionStatus.animationDuration = 1.5
+        
+        // TODO: Get from Yves
+        isLookingForTrainers = false
+        
+        // Overlay View & Activity Indicator
+        overlayView = UIView(frame: UIScreen.mainScreen().bounds)
+        overlayView.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.5)
+        let indicator = UIActivityIndicatorView(activityIndicatorStyle: .WhiteLarge)
+        indicator.center = view.center
+        indicator.startAnimating()
+        overlayView.addSubview(indicator)
+        view.addSubview(overlayView)
+        overlayView.hidden = true
+        
+        // TODO: Get from DAO
+        trainerList = [User]()
+        trainerList.append(User(name: "Renan", email: "", sex: .Male, birthDate: NSDate(), isTrainer: true))
+        trainerList.append(User(name: "Alena", email: "", sex: .Female, birthDate: NSDate(), isTrainer: true))
+        trainerList.append(User(name: "Gus", email: "", sex: .Female, birthDate: NSDate(), isTrainer: true))
+        trainerList.append(User(name: "Carol", email: "", sex: .Female, birthDate: NSDate(), isTrainer: true))
+    }
+    
+    
     /* **************************************************************************************************
     **
     **  MARK: Public
     **
     ****************************************************************************************************/
 
-    override func viewDidLoad ()
-    {
-        // TODO: Get from DAO
-        trainerList = [User]()
-        trainerList.append(User(name: "Renan", email: "", sex: "", birthDate: NSDate(), isTrainer: true))
-        trainerList.append(User(name: "Alena", email: "", sex: "", birthDate: NSDate(), isTrainer: true))
-        trainerList.append(User(name: "Gus", email: "", sex: "", birthDate: NSDate(), isTrainer: true))
-        trainerList.append(User(name: "Carol", email: "", sex: "", birthDate: NSDate(), isTrainer: true))
+    /// Mudar o valor dessa variável para indicar a pesquisa por treinadores
+    var isLookingForTrainers: Bool! {
+        didSet {
+            if (isLookingForTrainers == true) {
+                connectionStatus.startAnimating()
+            } else {
+                connectionStatus.stopAnimating()
+            }
+        }
     }
     
-    
-    /* **************************************************************************************************
-    **
-    **  MARK: Private variables
-    **
-    ****************************************************************************************************/
+    var isSendingData: Bool = false {
+        didSet {
+            if (isSendingData) {
+                overlayView.hidden = false
+            } else {
+                overlayView.hidden = true
+                tableView.reloadData()
+            }
+        }
+    }
 
+    /// Lista de treinadores encontrados
     var trainerList: [User]!
 
     
     /* **************************************************************************************************
     **
-    **  MARK: TableView Data Source
+    **  MARK: UITableView Data Source
     **
     ****************************************************************************************************/
     
-    override func numberOfSectionsInTableView (tableView: UITableView) -> Int
+    func numberOfSectionsInTableView (tableView: UITableView) -> Int
     {
         return 1
     }
 
-    override func tableView (tableView: UITableView, numberOfRowsInSection section: Int) -> Int
+    func tableView (tableView: UITableView, numberOfRowsInSection section: Int) -> Int
     {
         return trainerList.count
     }
     
-    override func tableView (tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell
+    func tableView (tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell
     {
         let cellIdentifier = "ShareCell"
         
@@ -63,8 +120,8 @@ class ShareController: UITableViewController
         }
         
         let trainer = trainerList[indexPath.row]
-        
         cell.trainerName.text = trainer.name
+        cell.trainerImage.image = UIImage(named: "Trainer-\(trainer.sex.description)")
         
         return cell
     }
@@ -72,11 +129,30 @@ class ShareController: UITableViewController
     
     /* **************************************************************************************************
     **
+    **  MARK: UITableView Delegate
+    **
+    ****************************************************************************************************/
+    
+    func tableView (tableView: UITableView, didHighlightRowAtIndexPath indexPath: NSIndexPath)
+    {
+        let cell = tableView.cellForRowAtIndexPath(indexPath) as! ShareTableViewCell
+        let color = UIColor(red: 235/255.0, green: 184/255.0, blue: 49/255.0, alpha: 0.38)
+        cell.contentView.backgroundColor = color
+        cell.backgroundColor = color
+    }
+
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath)
+    {
+        isSendingData = true
+    }
+
+    /* **************************************************************************************************
+    **
     **  MARK: TableView Delegate
     **
     ****************************************************************************************************/
 
-    override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat
+    func tableView (tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat
     {
         return CGFloat(70)
     }
@@ -85,4 +161,6 @@ class ShareController: UITableViewController
 class ShareTableViewCell: UITableViewCell
 {
     @IBOutlet weak var trainerName: UILabel!
+    
+    @IBOutlet weak var trainerImage: UIImageView!
 }

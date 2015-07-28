@@ -33,7 +33,10 @@ class RegistrationController: UIViewController, UITextFieldDelegate
     {
         let name = "\(firstNameTextField.text) \(lastNameTextField.text)"
         let email = emailTextField.text
-        let sex = genderTextField.text
+        
+        // TODO: let sex = genderTextField.text
+        let sex = Sex.Male
+        
         let birthDate = NSDate() // TODO: Gabriel
         let isTrainer = Facade.instance.isTrainer!
 
