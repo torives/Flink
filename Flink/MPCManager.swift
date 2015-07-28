@@ -124,7 +124,30 @@ class MPCManager: NSObject, MCSessionDelegate, MCNearbyServiceBrowserDelegate, M
     
     func session(session: MCSession!, didReceiveData data: NSData!, fromPeer peerID: MCPeerID!)
     {
+        let receivedData:AnyObject = NSKeyedUnarchiver.unarchiveObjectWithData(data) as AnyObject!
+        let requestType = receivedData["request"] as! String
         
+        switch(requestType)
+        {
+            case "HealthDataRequest":
+
+                var healthData:String?
+
+                if let data = healthData
+                {
+                    let message: [String:AnyObject] =   [   "request" : "HealthDataSent",
+                                                            "data"    : data
+                                                        ]
+                    var host = [peerID]
+                    sendData(message, toPeers: host)
+                }
+
+            case "HealthDataSent":
+                println()
+            
+            default:
+                println("Incompatible request type")
+        }
     }
     
     //Methods to handle file and data stream transfer. Not used, but needed
@@ -217,6 +240,22 @@ class MPCManager: NSObject, MCSessionDelegate, MCNearbyServiceBrowserDelegate, M
     
 
     //MARK: Private Methods
+    
+    private func sendData(data: Dictionary<String,AnyObject>, toPeers peers: [MCPeerID!]) -> Bool{
+        
+        let dataToSend = NSKeyedArchiver.archivedDataWithRootObject(data)
+        var error: NSError?
+        
+        if !session!.sendData(  dataToSend,
+                                toPeers: peers,
+                                withMode: MCSessionSendDataMode.Reliable,
+                                error: &error)
+        {
+            println("\(error)")
+            return false
+        }
+        return true
+    }
     
     func setupBrowser()
     {

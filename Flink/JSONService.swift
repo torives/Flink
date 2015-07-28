@@ -29,9 +29,15 @@ public class JSONService {
     {
         var jsonObject: [AnyObject] = []
         
+        let dateFormatter = NSDateFormatter()
+        dateFormatter.dateStyle = NSDateFormatterStyle.MediumStyle
+        dateFormatter.timeStyle = NSDateFormatterStyle.MediumStyle
+        
         for data in healthDataArray {
             let dataDictionary:AnyObject =  [   "name" : data.name,
-                                                "unit" : data.unit
+                                                "unit" : data.unit,
+                                                "value" : NSString(format: "%.5f", data.value),
+                                                "creationDate": dateFormatter.stringFromDate(data.creationDate)
                                             ]
             
             jsonObject.append(dataDictionary)
@@ -50,9 +56,28 @@ public class JSONService {
      *  :returns: an array of HealthData objects
      *
     */
-    class func convertStringToHealthDataArray(jsonString: String)
+    class func convertStringToHealthDataArray(jsonString: String) -> [HealthData]
     {
+        var healthDataArray = [HealthData]()
         
+        let array = JSONParseArray(jsonString)
+        for data:AnyObject in array
+        {
+            let name = data["name"] as! String
+            let unit = data["unit"] as! String
+            let value = (data["value"] as! NSString).doubleValue
+            
+            let dateFormatter = NSDateFormatter()
+            dateFormatter.dateStyle = NSDateFormatterStyle.MediumStyle
+            dateFormatter.timeStyle = NSDateFormatterStyle.MediumStyle
+            
+            let creationDate = dateFormatter.dateFromString(data["creationDate"] as! String)!
+            
+            let healthData = HealthData(name: name, value: value, unit: unit, creationDate: creationDate)
+            
+            healthDataArray.append(healthData)
+        }
+        return healthDataArray
     }
     
     /**
