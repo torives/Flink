@@ -24,8 +24,17 @@ class UserDAO
         if let isTrainer = defaults.objectForKey("userIsTrainer") as? Bool {
             let name = defaults.objectForKey("userName") as! String
             let email = defaults.objectForKey("userEmail") as! String
-            let sex = defaults.objectForKey("userSex") as! String
             let birthDate = defaults.objectForKey("userBirthDate") as! NSDate
+            
+            var sex: Sex
+            switch (defaults.objectForKey("userSex") as! String) {
+                case "Male":
+                    sex = .Male
+                case "Female":
+                    sex = .Female
+                default:
+                    sex = .Other
+            }
             
             return User(name: name, email: email, sex: sex, birthDate: birthDate, isTrainer: isTrainer)
         }
@@ -39,7 +48,7 @@ class UserDAO
         
         defaults.setObject(user.name, forKey: "userName")
         defaults.setObject(user.email, forKey: "userEmail")
-        defaults.setObject(user.sex, forKey: "userSex")
+        defaults.setObject(user.sex.description, forKey: "userSex")
         defaults.setObject(user.birthDate, forKey: "userBirthDate")
         defaults.setObject(user.isTrainer, forKey: "userIsTrainer")
     }

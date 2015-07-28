@@ -20,10 +20,10 @@ class StudentsController: UITableViewController
     {
         // TODO: Get from DAO
         studentList = [User]()
-        studentList.append(User(name: "Renan Student", email: "", sex: "", birthDate: NSDate(), isTrainer: false))
-        studentList.append(User(name: "Alena Student", email: "", sex: "", birthDate: NSDate(), isTrainer: false))
-        studentList.append(User(name: "Gus Student", email: "", sex: "", birthDate: NSDate(), isTrainer: false))
-        studentList.append(User(name: "Carol Student", email: "", sex: "", birthDate: NSDate(), isTrainer: false))
+        studentList.append(User(name: "Renan Student", email: "", sex: .Male, birthDate: NSDate(), isTrainer: false))
+        studentList.append(User(name: "Alena Student", email: "", sex: .Male, birthDate: NSDate(), isTrainer: false))
+        studentList.append(User(name: "Gus Student", email: "", sex: .Female, birthDate: NSDate(), isTrainer: false))
+        studentList.append(User(name: "Carol Student", email: "", sex: .Female, birthDate: NSDate(), isTrainer: false))
     }
     
     
