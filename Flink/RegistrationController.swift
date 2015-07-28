@@ -21,26 +21,6 @@ class RegistrationController: UIViewController, UITextFieldDelegate
 
     @IBOutlet weak var genderTextField: UITextField!
 
-    override func viewDidLoad()
-    {
-        super.viewDidLoad()
-        HealthDAO.authorizeHealthKit { (authorized,  error) -> Void in
-            if authorized
-            {
-                println("HealthKit authorization received.")
-            }
-            else
-            {
-                println("HealthKit authorization denied!")
-                if error != nil
-                {
-                    println("\(error)")
-                }
-            }
-            println("Autorizei")
-        }
-        
-    }
 
     override func viewWillAppear (animated: Bool)
     {
@@ -65,11 +45,6 @@ class RegistrationController: UIViewController, UITextFieldDelegate
         } else {
             performSegueWithIdentifier("toShare", sender: nil)
         }
-        
-        
-        // mini teste para verficar se os dados estao sendo puxados
-//        var hdata = HealthDAO.loadHealthData(NSDate.distantPast() as! NSDate, endDate: NSDate())
-//        println("printei os dados")
     }
 
 
