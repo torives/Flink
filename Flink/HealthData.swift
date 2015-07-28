@@ -14,13 +14,15 @@ class HealthData
     //var category:Category
     var value:Double
     var unit:String
-    var creationDate:NSDate
+    var startDate:NSDate
+    var endDate:NSDate
     
-    init(name:String, value:Double, unit:String, creationDate:NSDate)
+    init(name:String, value:Double, unit:String, startDate:NSDate, endDate:NSDate)
     {
         self.name = name
         self.value = value
         self.unit = unit
-        self.creationDate = creationDate
+        self.startDate = startDate
+        self.endDate = endDate
     }
 }
