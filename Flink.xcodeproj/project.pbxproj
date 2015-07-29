@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		164F9F031B689750007D8FF0 /* LoadhealthVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 164F9F021B689750007D8FF0 /* LoadhealthVC.swift */; };
+		167EEF831B6817C0002E6E9D /* GraphVCTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 167EEF821B6817C0002E6E9D /* GraphVCTest.swift */; };
+		167EEF851B682794002E6E9D /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 167EEF841B682794002E6E9D /* HealthKit.framework */; };
 		4FCE83E91B65771900F4C70C /* MPCManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FCE83E81B65771900F4C70C /* MPCManager.swift */; };
 		4FCE83EB1B65772700F4C70C /* MPCManagerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FCE83EA1B65772700F4C70C /* MPCManagerDelegate.swift */; };
 		4FCE83ED1B657DAF00F4C70C /* HealthData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FCE83EC1B657DAF00F4C70C /* HealthData.swift */; };
@@ -38,6 +41,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		164F9F021B689750007D8FF0 /* LoadhealthVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoadhealthVC.swift; sourceTree = "<group>"; };
+		167EEF821B6817C0002E6E9D /* GraphVCTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GraphVCTest.swift; sourceTree = "<group>"; };
+		167EEF841B682794002E6E9D /* HealthKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HealthKit.framework; path = System/Library/Frameworks/HealthKit.framework; sourceTree = SDKROOT; };
+		167EEF861B682794002E6E9D /* Flink.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = Flink.entitlements; sourceTree = "<group>"; };
 		4FCE83E81B65771900F4C70C /* MPCManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MPCManager.swift; sourceTree = "<group>"; };
 		4FCE83EA1B65772700F4C70C /* MPCManagerDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MPCManagerDelegate.swift; sourceTree = "<group>"; };
 		4FCE83EC1B657DAF00F4C70C /* HealthData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HealthData.swift; sourceTree = "<group>"; };
@@ -70,6 +77,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				6EEED33EB4B2C0581789CC87 /* Pods_Flink.framework in Frameworks */,
+				167EEF851B682794002E6E9D /* HealthKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -86,6 +94,7 @@
 		0BA11E84771EEF2AF6364F11 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				167EEF841B682794002E6E9D /* HealthKit.framework */,
 				C2ED6AB2EFC9C9C4E2FB3C93 /* Pods_Flink.framework */,
 			);
 			name = Frameworks;
@@ -141,6 +150,7 @@
 		75424F8D1B654FE000D34C6C /* Flink */ = {
 			isa = PBXGroup;
 			children = (
+				167EEF861B682794002E6E9D /* Flink.entitlements */,
 				758684991B6550760059C418 /* View */,
 				758684981B6550710059C418 /* Controller */,
 				758684971B6550690059C418 /* Model */,
@@ -205,6 +215,8 @@
 			isa = PBXGroup;
 			children = (
 				75424F941B654FE000D34C6C /* Main.storyboard */,
+				167EEF821B6817C0002E6E9D /* GraphVCTest.swift */,
+				164F9F021B689750007D8FF0 /* LoadhealthVC.swift */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -261,6 +273,12 @@
 				TargetAttributes = {
 					75424F8A1B654FDF00D34C6C = {
 						CreatedOnToolsVersion = 6.4;
+						DevelopmentTeam = F9MHMZ7EXG;
+						SystemCapabilities = {
+							com.apple.HealthKit = {
+								enabled = 1;
+							};
+						};
 					};
 					75424F9F1B654FE000D34C6C = {
 						CreatedOnToolsVersion = 6.4;
@@ -371,6 +389,8 @@
 				75424F931B654FE000D34C6C /* RegistrationController.swift in Sources */,
 				7586849D1B6553990059C418 /* TrainerUserController.swift in Sources */,
 				4FCE83E91B65771900F4C70C /* MPCManager.swift in Sources */,
+				164F9F031B689750007D8FF0 /* LoadhealthVC.swift in Sources */,
+				167EEF831B6817C0002E6E9D /* GraphVCTest.swift in Sources */,
 				7517D7941B656F0E0053C72B /* User.swift in Sources */,
 				75424F911B654FE000D34C6C /* AppDelegate.swift in Sources */,
 			);
@@ -500,6 +520,7 @@
 			baseConfigurationReference = BF28E6F02E611931B9DC1FCF /* Pods-Flink.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = Flink/Flink.entitlements;
 				INFOPLIST_FILE = Flink/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -511,6 +532,7 @@
 			baseConfigurationReference = AB2B368507838C8F2B0AFDDD /* Pods-Flink.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = Flink/Flink.entitlements;
 				INFOPLIST_FILE = Flink/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";

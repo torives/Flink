@@ -15,7 +15,7 @@ class HealthDAO
     
     static private let healthKitStore:HKHealthStore = HKHealthStore()
     
-    static private let healthQuantityTypeIdentifiers = [
+    static let healthQuantityTypeIdentifiers = [
         HKQuantityTypeIdentifierBodyFatPercentage       ,
         HKQuantityTypeIdentifierLeanBodyMass            ,
         HKQuantityTypeIdentifierBodyMass                ,
@@ -34,6 +34,62 @@ class HealthDAO
     **  MARK: Class methods
     **
     ****************************************************************************************************/
+    
+    class func labelName(identifier:String) -> String
+    {
+        switch( identifier )
+        {
+            case HKQuantityTypeIdentifierBodyFatPercentage:
+                return "Body Fat Percentage"
+                
+            case HKQuantityTypeIdentifierLeanBodyMass:
+                return "Lean Body Mass"
+                
+            case HKQuantityTypeIdentifierBodyMass:
+                return "Body Mass"
+                
+            case HKQuantityTypeIdentifierHeight:
+                return "Height"
+                
+            case HKQuantityTypeIdentifierHeartRate:
+                return "Heart Rate"
+                
+            case HKQuantityTypeIdentifierActiveEnergyBurned:
+                return "Calories Burned"
+                
+            case HKQuantityTypeIdentifierDistanceCycling:
+                return "Distance Cycled"
+                
+            case HKQuantityTypeIdentifierFlightsClimbed:
+                return "Flights Climbed"
+                
+            case HKQuantityTypeIdentifierStepCount:
+                return "Steps Taken"
+                
+            case HKQuantityTypeIdentifierDistanceWalkingRunning:
+                return "Distance Walked/Ran"
+                
+            default:
+                return ""
+        }
+
+    }
+    
+    class func getDataOfCategory(identifier:String) -> [HealthData]
+    {
+        var identHData:[HealthData] = []
+        
+        for data in Facade.instance.hData
+        {
+            if data.name == labelName(identifier)
+            {
+                identHData += [data]
+            }
+        }
+        
+        return identHData
+    }
+ 
     
     class func authorizeHealthKit (completion: ((success:Bool, error:NSError!) -> Void)!)
     {
@@ -133,10 +189,8 @@ class HealthDAO
     
     }
     
-    class func loadHealthData(startDate:NSDate, endDate:NSDate) -> [HealthData]
+    class func loadHealthData(startDate:NSDate, endDate:NSDate)
     {
-        var hData:[HealthData] = []
-        
         var sampleType:HKSampleType
         // make call back functions for
         
@@ -206,9 +260,9 @@ class HealthDAO
                                 continue
                         }
                         
-                        var hdatum:HealthData = HealthData(name: weight.quantityType.identifier, value: value, unit: unit, startDate: weight.startDate, endDate: weight.endDate)
+                        var hdatum:HealthData = HealthData(name: self.labelName(weight.quantityType.identifier), value: value, unit: unit, startDate: weight.startDate, endDate: weight.endDate)
                         
-                        hData += [hdatum]
+                        Facade.instance.hData += [hdatum]
                         println("name: \(hdatum.name)\nvalue: \(value)\nunit: \(unit)")
                         println("print hdatum in HealthDAO load func\n\n")
                     }
@@ -216,8 +270,6 @@ class HealthDAO
             }
 
         }
-        
-        return hData
     }
     
     class func save (user: User)

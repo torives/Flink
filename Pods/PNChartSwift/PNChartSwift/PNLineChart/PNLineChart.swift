@@ -325,9 +325,16 @@ public class PNLineChart: UIView{
                 
             for var i:Int = 0; i < chartData.itemCount; i++ {
                 yValue = CGFloat(chartData.getData(i).y)
-                    
-                innerGrade = (yValue! - yValueMin) / (yValueMax - yValueMin)
-                    
+                
+                if yValueMax != yValueMin
+                {
+                    innerGrade = (yValue! - yValueMin) / (yValueMax - yValueMin)
+                }
+                else
+                {
+                    innerGrade = yValue! - yValueMin
+                }
+                
                 var x:CGFloat = 2.0 * chartMargin +  (CGFloat(i) * xLabelWidth)
                 var y:CGFloat = chartCavanHeight! - (innerGrade! * chartCavanHeight!) + (yLabelHeight / 2.0)
                     
@@ -337,6 +344,7 @@ public class PNLineChart: UIView{
                     
                     var circleRect:CGRect = CGRectMake(x-inflexionWidth/2.0, y-inflexionWidth/2.0, inflexionWidth,inflexionWidth)
                     var circleCenter:CGPoint = CGPointMake(circleRect.origin.x + (circleRect.size.width / 2.0), circleRect.origin.y + (circleRect.size.height / 2.0))
+                    
                     pointPath.moveToPoint(CGPointMake(circleCenter.x + (inflexionWidth/2), circleCenter.y))
                     pointPath.addArcWithCenter(circleCenter, radius: CGFloat(inflexionWidth/2.0), startAngle: 0.0, endAngle:CGFloat(2.0*M_PI), clockwise: true)
                     

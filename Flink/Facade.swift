@@ -24,6 +24,8 @@ class Facade
     /// Usuário do aplicativo
     private(set) var appUser: User!
     
+    var hData:[HealthData] = []
+    
     
     /* **************************************************************************************************
     **
