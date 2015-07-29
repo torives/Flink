@@ -28,10 +28,12 @@ class ShareController: UIViewController, UITableViewDataSource, UITableViewDeleg
     **  MARK: UIViewController
     **
     ****************************************************************************************************/
-
     
     override func viewDidLoad ()
     {
+        // Set Status Bar White
+        self.setNeedsStatusBarAppearanceUpdate()
+        
         var animationFrames = [UIImage]()
         for (var i = 1 ; i < 5 ; i++) {
             animationFrames.append(UIImage(named: "connection\(i)")!)
@@ -58,6 +60,11 @@ class ShareController: UIViewController, UITableViewDataSource, UITableViewDeleg
         trainerList.append(User(name: "Alena", email: "", sex: .Female, birthDate: NSDate(), isTrainer: true))
         trainerList.append(User(name: "Gus", email: "", sex: .Female, birthDate: NSDate(), isTrainer: true))
         trainerList.append(User(name: "Carol", email: "", sex: .Female, birthDate: NSDate(), isTrainer: true))
+    }
+    
+    override func preferredStatusBarStyle () -> UIStatusBarStyle
+    {
+        return UIStatusBarStyle.LightContent
     }
     
     
@@ -125,8 +132,8 @@ class ShareController: UIViewController, UITableViewDataSource, UITableViewDeleg
         
         return cell
     }
-    
-    
+
+
     /* **************************************************************************************************
     **
     **  MARK: UITableView Delegate
@@ -141,10 +148,11 @@ class ShareController: UIViewController, UITableViewDataSource, UITableViewDeleg
         cell.backgroundColor = color
     }
 
-    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath)
+    func tableView (tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath)
     {
         isSendingData = true
     }
+
 
     /* **************************************************************************************************
     **
@@ -158,9 +166,12 @@ class ShareController: UIViewController, UITableViewDataSource, UITableViewDeleg
     }
 }
 
+
 class ShareTableViewCell: UITableViewCell
 {
     @IBOutlet weak var trainerName: UILabel!
     
     @IBOutlet weak var trainerImage: UIImageView!
 }
+
+

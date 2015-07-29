@@ -1,32 +1,29 @@
 //
-//  StudentsController.swift
+//  InfoController.swift
 //  Flink
 //
-//  Created by Renan Almeida on 7/26/15.
+//  Created by Renan Almeida on 7/29/15.
 //  Copyright (c) 2015 Flink. All rights reserved.
 //
 
 import UIKit
 
-class StudentsController: UIViewController, UITableViewDataSource, UITableViewDelegate
+class InfoController: UIViewController, UITableViewDataSource, UITableViewDelegate
 {
     /* **************************************************************************************************
     **
     **  MARK: UIViewController
     **
     ****************************************************************************************************/
-    
+
     override func viewDidLoad ()
     {
         // Set Status Bar White
         self.setNeedsStatusBarAppearanceUpdate()
         
-        // TODO: Get from DAO
-        studentList = [User]()
-        studentList.append(User(name: "Renan Student", email: "", sex: .Male, birthDate: NSDate(), isTrainer: false))
-        studentList.append(User(name: "Alena Student", email: "", sex: .Male, birthDate: NSDate(), isTrainer: false))
-        studentList.append(User(name: "Gus Student", email: "", sex: .Female, birthDate: NSDate(), isTrainer: false))
-        studentList.append(User(name: "Carol Student", email: "", sex: .Female, birthDate: NSDate(), isTrainer: false))
+        healthInformationList = ["Body Fat", "Lean Body Mass", "Body Mass", "Heart Rate",
+            "Active Energy Burned", "Distance Cycling", "Flights Climbed", "Step Count",
+            "Distance Running"]
     }
     
     override func preferredStatusBarStyle () -> UIStatusBarStyle
@@ -37,16 +34,28 @@ class StudentsController: UIViewController, UITableViewDataSource, UITableViewDe
 
     /* **************************************************************************************************
     **
-    **  MARK: Private variables
+    **  MARK: Public
     **
     ****************************************************************************************************/
     
-    private var studentList: [User]!
+    var healthInformationList: [String]!
     
     
     /* **************************************************************************************************
     **
-    **  MARK: TableView Data Source
+    **  MARK: Actions
+    **
+    ****************************************************************************************************/
+
+    @IBAction func backButtonAction (sender: UIButton)
+    {
+        performSegueWithIdentifier("fromInfoToStudents", sender: nil)
+    }
+    
+    
+    /* **************************************************************************************************
+    **
+    **  MARK: UITableView Data Source
     **
     ****************************************************************************************************/
     
@@ -57,23 +66,22 @@ class StudentsController: UIViewController, UITableViewDataSource, UITableViewDe
     
     func tableView (tableView: UITableView, numberOfRowsInSection section: Int) -> Int
     {
-        return studentList.count
+        return healthInformationList.count
     }
     
     func tableView (tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell
     {
-        let cellIdentifier = "StudentsCell"
+        let cellIdentifier = "HealthInformationCell"
         
-        var cell: StudentsTableViewCell! = tableView.dequeueReusableCellWithIdentifier(cellIdentifier) as? StudentsTableViewCell
+        var cell: HealthInfoTableViewCell! = tableView.dequeueReusableCellWithIdentifier(cellIdentifier) as? HealthInfoTableViewCell
         
         if (cell == nil) {
-            cell = StudentsTableViewCell(style: UITableViewCellStyle.Default, reuseIdentifier: cellIdentifier)
+            cell = HealthInfoTableViewCell(style: UITableViewCellStyle.Default, reuseIdentifier: cellIdentifier)
         }
         
-        let student = studentList[indexPath.row]
-        
-        cell.studentName.text = student.name
-        cell.studentImage.image = UIImage(named: "Student-\(student.sex.description)")
+        let healthInformation = healthInformationList[indexPath.row]
+        cell.healthInformationName.text = healthInformation
+        cell.healthInformationImage.image = UIImage(named: healthInformation)
         
         return cell
     }
@@ -85,25 +93,17 @@ class StudentsController: UIViewController, UITableViewDataSource, UITableViewDe
     **
     ****************************************************************************************************/
     
-    func tableView (tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat
-    {
-        return CGFloat(70)
-    }
-    
     func tableView (tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath)
     {
-        let student = studentList[indexPath.row]
-        Facade.instance.currentStudent = student
-        performSegueWithIdentifier("toInfo", sender: nil)
+        performSegueWithIdentifier("fromInfoToDetail", sender: nil)
     }
 }
 
-
-class StudentsTableViewCell: UITableViewCell
+class HealthInfoTableViewCell: UITableViewCell
 {
-    @IBOutlet weak var studentName: UILabel!
+    @IBOutlet weak var healthInformationName: UILabel!
     
-    @IBOutlet weak var studentImage: UIImageView!
+    @IBOutlet weak var healthInformationImage: UIImageView!
 }
 
 

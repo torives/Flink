@@ -10,6 +10,17 @@ import UIKit
 
 class TrainerUserController: UIViewController
 {
+    override func viewDidLoad ()
+    {
+        // Set Status Bar White
+        self.setNeedsStatusBarAppearanceUpdate()
+    }
+    
+    override func preferredStatusBarStyle () -> UIStatusBarStyle
+    {
+        return UIStatusBarStyle.LightContent
+    }
+    
     @IBAction func choseUserButtonAction (sender: UIButton)
     {
         Facade.instance.isTrainer = false
