@@ -12,9 +12,9 @@ protocol MPCManagerDelegate
 {
     func mpcManagerPeerDidChangedState(peerInfo: Dictionary<String,NSObject>)
     
-    func mpcManagerDidFoundPeer(named: String)
+    func mpcManagerDidFoundPeerWithDiscoveryInfo(info: [NSObject : AnyObject]!)
     
-    func mpcManagerDidLostPeer(named: String)
+    func mpcManagerDidLostPeerNamed(peerName: String)
     
     func mpcManagerReceivedConnectionInvitation(alertController: UIAlertController)
     

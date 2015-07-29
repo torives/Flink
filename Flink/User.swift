@@ -18,11 +18,11 @@ class User
     
     let name: String
     
-    let email: String
+    let email: String?
     
     let sex: Sex
     
-    let birthDate: NSDate
+    let birthDate: NSDate?
     
     let isTrainer: Bool
     
@@ -34,7 +34,7 @@ class User
     ****************************************************************************************************/
     
     /// Default constructor
-    init (name: String, email: String, sex: Sex, birthDate: NSDate, isTrainer: Bool)
+    init (name: String, email: String?, sex: Sex, birthDate: NSDate?, isTrainer: Bool)
     {
         self.name = name
         self.email = email

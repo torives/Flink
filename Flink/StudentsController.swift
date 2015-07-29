@@ -8,9 +8,9 @@
 
 import UIKit
 
-class StudentsController: UIViewController, UITableViewDataSource, UITableViewDelegate
+class StudentsController: UIViewController, UITableViewDataSource, UITableViewDelegate, MPCManagerDelegate
 {
-    /* **************************************************************************************************
+    /***************************************************************************************************
     **
     **  MARK: UIViewController
     **
@@ -23,11 +23,24 @@ class StudentsController: UIViewController, UITableViewDataSource, UITableViewDe
         
         // TODO: Get from DAO
         studentList = [User]()
-        studentList.append(User(name: "Renan Student", email: "", sex: .Male, birthDate: NSDate(), isTrainer: false))
-        studentList.append(User(name: "Alena Student", email: "", sex: .Male, birthDate: NSDate(), isTrainer: false))
-        studentList.append(User(name: "Gus Student", email: "", sex: .Female, birthDate: NSDate(), isTrainer: false))
-        studentList.append(User(name: "Carol Student", email: "", sex: .Female, birthDate: NSDate(), isTrainer: false))
+        
+        MPCManager.instance.configureMPCManagerWith(Facade.instance.appUser.name, defaultInvitationMessage: "", andDelegate: self)
+        MPCManager.instance.startAdvertisingPeer()
+        //MPCManager.instance.startBrowsingForPeers()
+        
+//        studentList.append(User(name: "Renan Student", email: "", sex: "", birthDate: NSDate(), isTrainer: false))
+//        studentList.append(User(name: "Alena Student", email: "", sex: "", birthDate: NSDate(), isTrainer: false))
+//        studentList.append(User(name: "Gus Student", email: "", sex: "", birthDate: NSDate(), isTrainer: false))
+//        studentList.append(User(name: "Carol Student", email: "", sex: "", birthDate: NSDate(), isTrainer: false))
     }
+    
+    override func viewWillDisappear(animated: Bool)
+    {
+        MPCManager.instance.disconnectFromCurrentSession()
+        MPCManager.instance.stopAdversingPeer()
+        MPCManager.instance.stopBrowsingForPeers()
+    }
+    
     
     override func preferredStatusBarStyle () -> UIStatusBarStyle
     {
@@ -44,7 +57,33 @@ class StudentsController: UIViewController, UITableViewDataSource, UITableViewDe
     private var studentList: [User]!
     
     
-    /* **************************************************************************************************
+    /***************************************************************************************************
+    **
+    **  MARK: MPCManager Delegate
+    **
+    ****************************************************************************************************/
+    
+    func mpcManagerPeerDidChangedState(peerInfo: Dictionary<String,NSObject>)
+    {
+        
+    }
+    func mpcManagerDidFoundPeerWithDiscoveryInfo(info: [NSObject : AnyObject]!)
+    {
+        
+    }
+    
+    func mpcManagerDidLostPeerNamed(peerName: String)
+    {
+        
+    }
+    
+    func mpcManagerReceivedConnectionInvitation(alertController: UIAlertController)
+    {
+        self.presentViewController(alertController, animated: true, completion: nil)
+    }
+    
+    
+    /***************************************************************************************************
     **
     **  MARK: TableView Data Source
     **
@@ -70,7 +109,7 @@ class StudentsController: UIViewController, UITableViewDataSource, UITableViewDe
             cell = StudentsTableViewCell(style: UITableViewCellStyle.Default, reuseIdentifier: cellIdentifier)
         }
         
-        let student = studentList[indexPath.row]
+        let trainer = studentList[indexPath.row]
         
         cell.studentName.text = student.name
         cell.studentImage.image = UIImage(named: "Student-\(student.sex.description)")
