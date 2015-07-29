@@ -101,7 +101,7 @@ class MPCManager: NSObject, MCSessionDelegate, MCNearbyServiceBrowserDelegate, M
         { (action) in
             
             self.session = MCSession(peer:self.peer)
-            self.session?.delegate
+            self.session?.delegate = self
             
             invitationHandler(true,self.session)
         }
@@ -134,6 +134,7 @@ class MPCManager: NSObject, MCSessionDelegate, MCNearbyServiceBrowserDelegate, M
         
         switch(requestType)
         {
+            //FIX-ME this case is never used because of current app logic
             case "HealthDataRequest":
 
                 var healthData:String?
@@ -148,7 +149,13 @@ class MPCManager: NSObject, MCSessionDelegate, MCNearbyServiceBrowserDelegate, M
                 }
 
             case "HealthDataSent":
-                println()
+                println("Received health data from \(peerID.displayName)")
+            
+                let jsonString = receivedData["data"] as! String
+            
+                let healthData = JSONService.convertStringToHealthDataArray(jsonString)
+            
+                //TODO store received healthData
             
             default:
                 println("Incompatible request type")
@@ -202,22 +209,30 @@ class MPCManager: NSObject, MCSessionDelegate, MCNearbyServiceBrowserDelegate, M
     */
     func connectToPeerNamed(peerDisplayName: String)
     {
-        var guestPeer: MCPeerID?
+        session = MCSession(peer: peer)
+        session?.delegate = self
         
-        //TODO not sure if this will work
-        let guestPeerSet = foundPeers.filteredSetUsingPredicate(
-                            NSPredicate(format: "entity.displayName LIKE %@", peerDisplayName))
+        for (index,guestPeer) in enumerate(foundPeers)
+        {
+            if (guestPeer as! MCPeerID).displayName == peerDisplayName
+            {
+                browser?.invitePeer(guestPeer as! MCPeerID, toSession: self.session, withContext: nil, timeout: 30.0)
+                return
+            }
+        }
         
-        guestPeer = guestPeerSet.first as? MCPeerID
-       
-        if let peer = guestPeer
-        {
-            browser?.invitePeer(guestPeer, toSession: self.session, withContext: nil, timeout: 30.0)
-        }
-        else
-        {
-            println("peer \(peerDisplayName) was not found")
-        }
+        println("peer \(peerDisplayName) was not found")
+    }
+    
+    
+    func sendHealthData(dataToSend: [HealthData])
+    {
+     
+        let healthData: [String:AnyObject] =    [   "request":"HealthDataSent",
+                                                    "data"   :JSONService.stringfyHealthDataArray(dataToSend)
+                                                ]
+        
+        sendData(healthData, toPeers: session?.connectedPeers as! [MCPeerID])
     }
  
     func disconnectFromCurrentSession()

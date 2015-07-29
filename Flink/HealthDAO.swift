@@ -189,7 +189,7 @@ class HealthDAO
     
     }
     
-    class func loadHealthData(startDate:NSDate, endDate:NSDate)
+    class func loadHealthData(startDate:NSDate, endDate:NSDate, completion:(() -> Void)! )
     {
         var sampleType:HKSampleType
         // make call back functions for
@@ -263,6 +263,12 @@ class HealthDAO
                         var hdatum:HealthData = HealthData(name: self.labelName(weight.quantityType.identifier), value: value, unit: unit, startDate: weight.startDate, endDate: weight.endDate)
                         
                         Facade.instance.hData += [hdatum]
+                        
+                        if quant == self.healthQuantityTypeIdentifiers.last && val == values.last
+                        {
+                            completion()
+                        }
+                        
                         println("name: \(hdatum.name)\nvalue: \(value)\nunit: \(unit)")
                         println("print hdatum in HealthDAO load func\n\n")
                     }

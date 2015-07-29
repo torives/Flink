@@ -184,16 +184,31 @@ class ShareController: UIViewController, UITableViewDataSource, UITableViewDeleg
 
             case .Connected:
                 println("Established connection with peer named \(peerID.displayName)")
+            
+                isSendingData = true
+                
+                HealthDAO.loadHealthData(NSDate(), endDate: NSDate()) {
+                    
+                    let data = Facade.instance.hData
+                    
+                    MPCManager.instance.sendHealthData(data)
+                    
+                    self.isSendingData = false
+                }
+            
             case .NotConnected:
                 
-                println("Disconnected from peer named \(peerID.displayName)")
-                
-                for var i=0; i < foundTrainerList.count; i++
+                if foundTrainerList.count != 0
                 {
-                    if foundTrainerList[i].name == peerDisplayName
+                    println("Disconnected from peer named \(peerID.displayName)")
+                    
+                    for var i=0; i < foundTrainerList.count; i++
                     {
-                        foundTrainerList.removeAtIndex(i)
-                        break
+                        if foundTrainerList[i].name == peerDisplayName
+                        {
+                            foundTrainerList.removeAtIndex(i)
+                            break
+                        }
                     }
                 }
         }
@@ -252,7 +267,9 @@ class ShareController: UIViewController, UITableViewDataSource, UITableViewDeleg
 
     func tableView (tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath)
     {
-        isSendingData = true
+        let cell = tableView.cellForRowAtIndexPath(indexPath) as! ShareTableViewCell
+        
+        MPCManager.instance.connectToPeerNamed(cell.trainerName.text!)
     }
 
 
