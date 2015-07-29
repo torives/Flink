@@ -132,7 +132,6 @@
                                 </userDefinedRuntimeAttributes>
                                 <connections>
                                     <action selector="registerButtonAction:" destination="85m-HG-dSi" eventType="touchUpInside" id="T93-ul-3FT"/>
-                                    <segue destination="kVn-5q-xdG" kind="show" identifier="toShare" id="Dmq-5q-8qD"/>
                                 </connections>
                             </button>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="EVe-8N-J6D">
@@ -865,8 +864,8 @@
         <image name="connection4" width="565" height="511"/>
     </resources>
     <inferredMetricsTieBreakers>
+        <segue reference="jxR-9E-dNt"/>
         <segue reference="Rfn-KT-6Di"/>
-        <segue reference="xEa-bP-665"/>
         <segue reference="PKz-5O-eGU"/>
     </inferredMetricsTieBreakers>
 </document>

@@ -274,7 +274,7 @@ class MPCManager: NSObject, MCSessionDelegate, MCNearbyServiceBrowserDelegate, M
     {
         var discoveryInfo = [String:AnyObject]()
         discoveryInfo["userName"] = Facade.instance.appUser.name
-        discoveryInfo["userSex"] = Facade.instance.appUser.sex
+        discoveryInfo["userSex"] = Facade.instance.appUser.sex.description
         discoveryInfo["isTrainer"] = Facade.instance.appUser.isTrainer.description
         
         advertiser = MCNearbyServiceAdvertiser( peer: peer, discoveryInfo: discoveryInfo,

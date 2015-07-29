@@ -42,9 +42,6 @@ class ShareController: UIViewController, UITableViewDataSource, UITableViewDeleg
         connectionStatus.animationImages = animationFrames
         connectionStatus.animationDuration = 1.5
         
-        // TODO: Get from Yves
-        isLookingForTrainers = false
-        
         // Overlay View & Activity Indicator
         overlayView = UIView(frame: UIScreen.mainScreen().bounds)
         overlayView.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.5)
@@ -59,11 +56,14 @@ class ShareController: UIViewController, UITableViewDataSource, UITableViewDeleg
         
         let message = "Warning! Insert really important message here"
         
-        MPCManager.instance.configureMPCManagerWith(Facade.instance.appUser.name,
+        let name = Facade.instance.appUser.name
+        
+        MPCManager.instance.configureMPCManagerWith(name,
                                                     defaultInvitationMessage: message,
                                                     andDelegate: self)
         
         MPCManager.instance.startBrowsingForPeers()
+        isLookingForTrainers = true
     }
     
     override func preferredStatusBarStyle () -> UIStatusBarStyle
@@ -122,9 +122,21 @@ class ShareController: UIViewController, UITableViewDataSource, UITableViewDeleg
         let userName = info["userName"] as! String
         let userSex = info["userSex"] as! String
         
-        let newTrainer = User(name: userName, email: nil, sex: userSex, birthDate: nil, isTrainer: true)
+        var sex:Sex
+        switch (userSex)
+        {
+            case "Male":
+                sex = Sex.Male
+            case "Female":
+                sex = Sex.Female
+            default:
+                sex = Sex.Other
+        }
+        
+        let newTrainer = User(name: userName, email: nil, sex: sex, birthDate: nil, isTrainer: true)
         foundTrainerList.append(newTrainer)
         
+        isLookingForTrainers = false
         self.tableView.reloadData()
     }
     
@@ -141,6 +153,12 @@ class ShareController: UIViewController, UITableViewDataSource, UITableViewDeleg
                 break
             }
         }
+        
+        if foundTrainerList.count == 0
+        {
+            isLookingForTrainers = true
+        }
+        
         self.tableView.reloadData()
     }
     

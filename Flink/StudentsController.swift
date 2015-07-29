@@ -109,7 +109,7 @@ class StudentsController: UIViewController, UITableViewDataSource, UITableViewDe
             cell = StudentsTableViewCell(style: UITableViewCellStyle.Default, reuseIdentifier: cellIdentifier)
         }
         
-        let trainer = studentList[indexPath.row]
+        let student = studentList[indexPath.row]
         
         cell.studentName.text = student.name
         cell.studentImage.image = UIImage(named: "Student-\(student.sex.description)")
