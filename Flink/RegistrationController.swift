@@ -71,9 +71,29 @@ class RegistrationController: UIViewController, UITextFieldDelegate
         let user = User(name: name, email: email, sex: sex, birthDate: birthDate, isTrainer: isTrainer)
         Facade.instance.saveUser(user)
         
-        if (isTrainer) {
+        if (isTrainer)
+        {
             performSegueWithIdentifier("toStudents", sender: nil)
-        } else {
+        }
+        else
+        {
+            
+            HealthDAO.authorizeHealthKit { (authorized,  error) -> Void in
+                if authorized
+                {
+                    println("HealthKit authorization received.")
+                }
+                else
+                {
+                    println("HealthKit authorization denied!")
+                    if error != nil
+                    {
+                        println("\(error)")
+                    }
+                }
+                println("Autorizei")
+            }
+            
             performSegueWithIdentifier("toShare", sender: nil)
         }
     }
