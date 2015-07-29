@@ -10,8 +10,13 @@ import UIKit
 
 class RegistrationController: UIViewController, UITextFieldDelegate
 {
-    @IBOutlet weak var titleLabel: UILabel!
+    /* **************************************************************************************************
+    **
+    **  MARK: Interface
+    **
+    ****************************************************************************************************/
 
+    @IBOutlet weak var titleLabel: UILabel!
 
     @IBOutlet weak var firstNameTextField: UITextField!
 
@@ -21,13 +26,36 @@ class RegistrationController: UIViewController, UITextFieldDelegate
 
     @IBOutlet weak var genderTextField: UITextField!
 
+    
+    /* **************************************************************************************************
+    **
+    **  MARK: UIViewController
+    **
+    ****************************************************************************************************/
+    
+    override func viewDidLoad ()
+    {
+        // Set Status Bar White
+        self.setNeedsStatusBarAppearanceUpdate()
+    }
 
     override func viewWillAppear (animated: Bool)
     {
         let text = (Facade.instance.isTrainer == true) ? "Trainer" : "User"
         titleLabel.text = "\(text) registration"
     }
+    
+    override func preferredStatusBarStyle () -> UIStatusBarStyle
+    {
+        return UIStatusBarStyle.LightContent
+    }
 
+
+    /* **************************************************************************************************
+    **
+    **  MARK: Actions
+    **
+    ****************************************************************************************************/
 
     @IBAction func registerButtonAction (sender: UIButton)
     {

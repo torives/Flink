@@ -24,6 +24,8 @@
 		754CE03B1B65CEEC00652E8F /* StudentsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 754CE03A1B65CEEC00652E8F /* StudentsController.swift */; };
 		754CE03D1B65D69A00652E8F /* ShareController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 754CE03C1B65D69A00652E8F /* ShareController.swift */; };
 		756AD7C11B6819010074488B /* Sex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 756AD7C01B6819010074488B /* Sex.swift */; };
+		75751DD81B687B44000EBB56 /* InfoController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75751DD71B687B44000EBB56 /* InfoController.swift */; };
+		75751DDA1B688732000EBB56 /* DetailController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75751DD91B688732000EBB56 /* DetailController.swift */; };
 		7586849B1B65508B0059C418 /* Facade.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7586849A1B65508B0059C418 /* Facade.swift */; };
 		7586849D1B6553990059C418 /* TrainerUserController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7586849C1B6553990059C418 /* TrainerUserController.swift */; };
 /* End PBXBuildFile section */
@@ -59,6 +61,8 @@
 		754CE03A1B65CEEC00652E8F /* StudentsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StudentsController.swift; sourceTree = "<group>"; };
 		754CE03C1B65D69A00652E8F /* ShareController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShareController.swift; sourceTree = "<group>"; };
 		756AD7C01B6819010074488B /* Sex.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Sex.swift; sourceTree = "<group>"; };
+		75751DD71B687B44000EBB56 /* InfoController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InfoController.swift; sourceTree = "<group>"; };
+		75751DD91B688732000EBB56 /* DetailController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailController.swift; sourceTree = "<group>"; };
 		7586849A1B65508B0059C418 /* Facade.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Facade.swift; sourceTree = "<group>"; };
 		7586849C1B6553990059C418 /* TrainerUserController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrainerUserController.swift; sourceTree = "<group>"; };
 		AB2B368507838C8F2B0AFDDD /* Pods-Flink.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Flink.release.xcconfig"; path = "Pods/Target Support Files/Pods-Flink/Pods-Flink.release.xcconfig"; sourceTree = "<group>"; };
@@ -200,6 +204,8 @@
 				7586849C1B6553990059C418 /* TrainerUserController.swift */,
 				754CE03A1B65CEEC00652E8F /* StudentsController.swift */,
 				754CE03C1B65D69A00652E8F /* ShareController.swift */,
+				75751DD71B687B44000EBB56 /* InfoController.swift */,
+				75751DD91B688732000EBB56 /* DetailController.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -371,12 +377,14 @@
 				7517D7981B6573480053C72B /* UserDAO.swift in Sources */,
 				754CE03B1B65CEEC00652E8F /* StudentsController.swift in Sources */,
 				756AD7C11B6819010074488B /* Sex.swift in Sources */,
+				75751DDA1B688732000EBB56 /* DetailController.swift in Sources */,
 				4FCE83ED1B657DAF00F4C70C /* HealthData.swift in Sources */,
 				75424F931B654FE000D34C6C /* RegistrationController.swift in Sources */,
 				7586849D1B6553990059C418 /* TrainerUserController.swift in Sources */,
 				4FCE83E91B65771900F4C70C /* MPCManager.swift in Sources */,
 				7517D7941B656F0E0053C72B /* User.swift in Sources */,
 				75424F911B654FE000D34C6C /* AppDelegate.swift in Sources */,
+				75751DD81B687B44000EBB56 /* InfoController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

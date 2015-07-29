@@ -24,6 +24,12 @@ class Facade
     /// Usuário do aplicativo
     private(set) var appUser: User!
     
+    /// Gambiarra
+    var currentStudent: User!
+    
+    /// Gambiarra [2]
+    var currentDetail: HealthData!
+    
     
     /* **************************************************************************************************
     **

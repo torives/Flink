@@ -37,7 +37,8 @@ public class JSONService {
             let dataDictionary:AnyObject =  [   "name" : data.name,
                                                 "unit" : data.unit,
                                                 "value" : NSString(format: "%.5f", data.value),
-                                                "creationDate": dateFormatter.stringFromDate(data.creationDate)
+                                                "startDate": dateFormatter.stringFromDate(data.startDate),
+                                                "endDate": dateFormatter.stringFromDate(data.endDate)
                                             ]
             
             jsonObject.append(dataDictionary)
@@ -71,9 +72,10 @@ public class JSONService {
             dateFormatter.dateStyle = NSDateFormatterStyle.MediumStyle
             dateFormatter.timeStyle = NSDateFormatterStyle.MediumStyle
             
-            let creationDate = dateFormatter.dateFromString(data["creationDate"] as! String)!
+            let startDate = dateFormatter.dateFromString(data["startDate"] as! String)!
+            let endDate = dateFormatter.dateFromString(data["endDate"] as! String)!
             
-            let healthData = HealthData(name: name, value: value, unit: unit, creationDate: creationDate)
+            let healthData = HealthData(name: name, value: value, unit: unit, startDate: startDate, endDate: endDate)
             
             healthDataArray.append(healthData)
         }
