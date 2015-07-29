@@ -42,9 +42,8 @@ class MPCManager: NSObject, MCSessionDelegate, MCNearbyServiceBrowserDelegate, M
     //MARK: Private attributes
     
     private var defaultInviteMessage: String?
-    private let serviceTypeString = "FlinkService"
+    private let serviceTypeString = "flinkservice"
     private var delegate: MPCManagerDelegate?
-    private var discoveryInfo = [String:String]()
     private var foundPeers = NSMutableSet()
     
     private var session: MCSession?
@@ -64,14 +63,20 @@ class MPCManager: NSObject, MCSessionDelegate, MCNearbyServiceBrowserDelegate, M
                     foundPeer peerID: MCPeerID!,
                     withDiscoveryInfo info: [NSObject : AnyObject]!)
     {
-        foundPeers.addObject(peerID)
-        delegate?.mpcManagerDidFoundPeer(peerID.displayName)
+        
+        let isTrainer = info["isTrainer"] as! String
+        
+        if isTrainer == "true" && !foundPeers.containsObject(peerID)
+        {
+            foundPeers.addObject(peerID)
+            delegate?.mpcManagerDidFoundPeerWithDiscoveryInfo(info)
+        }
     }
     
     func browser(browser: MCNearbyServiceBrowser!, lostPeer peerID: MCPeerID!)
     {
         let lostPeerName = peerID.displayName
-        delegate?.mpcManagerDidLostPeer(lostPeerName)
+        delegate?.mpcManagerDidLostPeerNamed(lostPeerName)
 
         foundPeers.removeObject(peerID)
     }
@@ -174,7 +179,9 @@ class MPCManager: NSObject, MCSessionDelegate, MCNearbyServiceBrowserDelegate, M
      *
      *  :param: message     The message to be displayed to an invited peer
     */
-    func configureMPCManagerWith(displayName: String, defaultInvitationMessage message: String, andDelegate delegate: MPCManagerDelegate)
+    func configureMPCManagerWith(   displayName: String,
+                                    defaultInvitationMessage message: String,
+                                    andDelegate delegate: MPCManagerDelegate?)
     {
         peer = MCPeerID(displayName: displayName)
         defaultInviteMessage = message
@@ -260,12 +267,18 @@ class MPCManager: NSObject, MCSessionDelegate, MCNearbyServiceBrowserDelegate, M
     func setupBrowser()
     {
         browser = MCNearbyServiceBrowser(peer: peer, serviceType: serviceTypeString)
+        browser?.delegate = self
     }
     
     func setupAdvertiser()
     {
-        //TODO get info about the user from UserDAO
+        var discoveryInfo = [String:AnyObject]()
+        discoveryInfo["userName"] = Facade.instance.appUser.name
+        discoveryInfo["userSex"] = Facade.instance.appUser.sex
+        discoveryInfo["isTrainer"] = Facade.instance.appUser.isTrainer.description
+        
         advertiser = MCNearbyServiceAdvertiser( peer: peer, discoveryInfo: discoveryInfo,
                                                 serviceType: serviceTypeString)
+        advertiser?.delegate = self
     }
 }

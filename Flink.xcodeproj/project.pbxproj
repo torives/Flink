@@ -261,6 +261,7 @@
 				TargetAttributes = {
 					75424F8A1B654FDF00D34C6C = {
 						CreatedOnToolsVersion = 6.4;
+						DevelopmentTeam = D4QEWF5RB3;
 					};
 					75424F9F1B654FE000D34C6C = {
 						CreatedOnToolsVersion = 6.4;
@@ -500,9 +501,12 @@
 			baseConfigurationReference = BF28E6F02E611931B9DC1FCF /* Pods-Flink.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = Flink/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Debug;
 		};
@@ -511,9 +515,12 @@
 			baseConfigurationReference = AB2B368507838C8F2B0AFDDD /* Pods-Flink.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = Flink/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Release;
 		};

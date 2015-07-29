@@ -8,9 +8,9 @@
 
 import UIKit
 
-class StudentsController: UITableViewController
+class StudentsController: UITableViewController, MPCManagerDelegate
 {
-    /* **************************************************************************************************
+    /***************************************************************************************************
     **
     **  MARK: Public
     **
@@ -20,14 +20,26 @@ class StudentsController: UITableViewController
     {
         // TODO: Get from DAO
         studentList = [User]()
-        studentList.append(User(name: "Renan Student", email: "", sex: "", birthDate: NSDate(), isTrainer: false))
-        studentList.append(User(name: "Alena Student", email: "", sex: "", birthDate: NSDate(), isTrainer: false))
-        studentList.append(User(name: "Gus Student", email: "", sex: "", birthDate: NSDate(), isTrainer: false))
-        studentList.append(User(name: "Carol Student", email: "", sex: "", birthDate: NSDate(), isTrainer: false))
+        
+        MPCManager.instance.configureMPCManagerWith(Facade.instance.appUser.name, defaultInvitationMessage: "", andDelegate: self)
+        MPCManager.instance.startAdvertisingPeer()
+        //MPCManager.instance.startBrowsingForPeers()
+        
+//        studentList.append(User(name: "Renan Student", email: "", sex: "", birthDate: NSDate(), isTrainer: false))
+//        studentList.append(User(name: "Alena Student", email: "", sex: "", birthDate: NSDate(), isTrainer: false))
+//        studentList.append(User(name: "Gus Student", email: "", sex: "", birthDate: NSDate(), isTrainer: false))
+//        studentList.append(User(name: "Carol Student", email: "", sex: "", birthDate: NSDate(), isTrainer: false))
+    }
+    
+    override func viewWillDisappear(animated: Bool)
+    {
+        MPCManager.instance.disconnectFromCurrentSession()
+        MPCManager.instance.stopAdversingPeer()
+        MPCManager.instance.stopBrowsingForPeers()
     }
     
     
-    /* **************************************************************************************************
+    /***************************************************************************************************
     **
     **  MARK: Private variables
     **
@@ -36,7 +48,33 @@ class StudentsController: UITableViewController
     var studentList: [User]!
     
     
-    /* **************************************************************************************************
+    /***************************************************************************************************
+    **
+    **  MARK: MPCManager Delegate
+    **
+    ****************************************************************************************************/
+    
+    func mpcManagerPeerDidChangedState(peerInfo: Dictionary<String,NSObject>)
+    {
+        
+    }
+    func mpcManagerDidFoundPeerWithDiscoveryInfo(info: [NSObject : AnyObject]!)
+    {
+        
+    }
+    
+    func mpcManagerDidLostPeerNamed(peerName: String)
+    {
+        
+    }
+    
+    func mpcManagerReceivedConnectionInvitation(alertController: UIAlertController)
+    {
+        self.presentViewController(alertController, animated: true, completion: nil)
+    }
+    
+    
+    /***************************************************************************************************
     **
     **  MARK: TableView Data Source
     **

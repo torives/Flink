@@ -7,10 +7,11 @@
 //
 
 import UIKit
+import MultipeerConnectivity
 
-class ShareController: UITableViewController
+class ShareController: UITableViewController, MPCManagerDelegate
 {
-    /* **************************************************************************************************
+    /***************************************************************************************************
     **
     **  MARK: Public
     **
@@ -18,25 +19,109 @@ class ShareController: UITableViewController
 
     override func viewDidLoad ()
     {
-        // TODO: Get from DAO
-        trainerList = [User]()
-        trainerList.append(User(name: "Renan", email: "", sex: "", birthDate: NSDate(), isTrainer: true))
-        trainerList.append(User(name: "Alena", email: "", sex: "", birthDate: NSDate(), isTrainer: true))
-        trainerList.append(User(name: "Gus", email: "", sex: "", birthDate: NSDate(), isTrainer: true))
-        trainerList.append(User(name: "Carol", email: "", sex: "", birthDate: NSDate(), isTrainer: true))
+        foundTrainerList = [User]()
+        
+        let message = "Warning! Insert really important message here"
+        
+        MPCManager.instance.configureMPCManagerWith(Facade.instance.appUser.name,
+                                                    defaultInvitationMessage: message,
+                                                    andDelegate: self)
+        
+        //MPCManager.instance.startAdvertisingPeer()
+        MPCManager.instance.startBrowsingForPeers()
     }
     
     
-    /* **************************************************************************************************
+    override func viewWillDisappear(animated: Bool)
+    {
+        MPCManager.instance.disconnectFromCurrentSession()
+        MPCManager.instance.stopAdversingPeer()
+        MPCManager.instance.stopBrowsingForPeers()
+    }
+    
+    /***************************************************************************************************
     **
     **  MARK: Private variables
     **
     ****************************************************************************************************/
 
-    var trainerList: [User]!
+    var foundTrainerList: [User]!
 
     
-    /* **************************************************************************************************
+    /***************************************************************************************************
+    **
+    **  MARK: MPCManager Delegate
+    **
+    ****************************************************************************************************/
+    
+    func mpcManagerDidFoundPeerWithDiscoveryInfo(info: [NSObject : AnyObject]!)
+    {
+    
+        let userName = info["userName"] as! String
+        let userSex = info["userSex"] as! String
+        
+        let newTrainer = User(name: userName, email: nil, sex: userSex, birthDate: nil, isTrainer: true)
+        foundTrainerList.append(newTrainer)
+        
+        self.tableView.reloadData()
+    }
+    
+    
+    //tem que conferir o caso de ter perdido a conexao com um ja conectado
+    //ou um nao conectado ter saido de alcance
+    func mpcManagerDidLostPeerNamed(peerName: String)
+    {
+        for var i=0; i < foundTrainerList.count; i++
+        {
+            if foundTrainerList[i].name == peerName
+            {
+                foundTrainerList.removeAtIndex(i)
+                break
+            }
+        }
+        self.tableView.reloadData()
+    }
+    
+    func mpcManagerReceivedConnectionInvitation(alertController: UIAlertController)
+    {
+        self.presentViewController(alertController, animated: true, completion: nil)
+    }
+    
+    
+    //tem que conferir o caso de ter perdido a conexao com um ja conectado
+    //ou um nao conectado ter saido de alcance
+    func mpcManagerPeerDidChangedState(peerInfo: Dictionary<String,NSObject>)
+    {
+        let peerID = peerInfo["peerID"] as! MCPeerID
+        let peerDisplayName = peerID.displayName
+        
+        let state = MCSessionState(rawValue: peerInfo["state"] as! Int)!
+        
+        switch (state)
+        {
+            case .Connecting:
+                println("Establishing connection with peer named \(peerID.displayName)")
+
+            case .Connected:
+                println("Established connection with peer named \(peerID.displayName)")
+            case .NotConnected:
+                
+                println("Disconnected from peer named \(peerID.displayName)")
+                
+                for var i=0; i < foundTrainerList.count; i++
+                {
+                    if foundTrainerList[i].name == peerDisplayName
+                    {
+                        foundTrainerList.removeAtIndex(i)
+                        break
+                    }
+                }
+        }
+        self.tableView.reloadData()
+    }
+    
+    
+    /***************************************************************************************************
     **
     **  MARK: TableView Data Source
     **
@@ -49,7 +134,7 @@ class ShareController: UITableViewController
 
     override func tableView (tableView: UITableView, numberOfRowsInSection section: Int) -> Int
     {
-        return trainerList.count
+        return foundTrainerList.count
     }
     
     override func tableView (tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell
@@ -62,7 +147,7 @@ class ShareController: UITableViewController
             cell = ShareTableViewCell(style: UITableViewCellStyle.Default, reuseIdentifier: cellIdentifier)
         }
         
-        let trainer = trainerList[indexPath.row]
+        let trainer = foundTrainerList[indexPath.row]
         
         cell.trainerName.text = trainer.name
         
@@ -70,7 +155,7 @@ class ShareController: UITableViewController
     }
     
     
-    /* **************************************************************************************************
+    /***************************************************************************************************
     **
     **  MARK: TableView Delegate
     **
